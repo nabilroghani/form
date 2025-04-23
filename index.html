@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student form</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        padding: 20px;
+        background-color: #f2f2f2;
+    }
+
+    .main-container {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 600px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+    }
+
+    fieldset {
+        border: none;
+    }
+
+    legend {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    label {
+        text-align: left;
+        font-weight: 500;
+        margin-top: 8px;
+    }
+
+    input {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    input:focus {
+        background-color: #e0f7fa;
+        outline: none;
+        border-color: #00bcd4;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 12px;
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0097a7;
+    }
+
+    #output, #id-output {
+        margin-top: 15px;
+        font-size: 0.95rem;
+        text-align: left;
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    #all-submissions {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    #submission-list {
+        padding-left: 20px;
+    }
+
+    #submission-list li {
+        margin-bottom: 10px;
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 6px;
+        position: relative;
+    }
+
+    #submission-list button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    /* 📱 Mobile Responsive */
+    @media (max-width: 600px) {
+        .form-container {
+            padding: 15px;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        form {
+            gap: 8px;
+        }
+    }
+</style>
+
+<body>
+    <div class="main-container">
+        <div class="form-container">
+            <fieldset id="border">
+                <legend>Registration Form</legend>
+            <form action="">
+            <label for="first-name">First Name:</label>
+            <input type="text" name="name" id="first-name" placeholder="Enter your first name"> 
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" placeholder="Enter your last name"><br> <br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email address"> 
+            <label for="phone-number">Phone-number:</label>
+            <input type="number" name="phone-number" id="phone-number" placeholder="Enter your phone-number"> <br> <br>
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" placeholder="Enter Age">
+            <label for="address">Address</label>
+            <input type="text" name="Address" id="address" placeholder="Enter your address"><br> <br>
+            <button>Submit</button>
+            </form>
+            <p id="output"></p>
+            <p id="id-output"></p>
+            <div id="all-submissions">
+                <h3>All Submissions</h3>
+                <ul id="submission-list"></ul>
+            </div>
+            
+        </fieldset>
+
+        </div>
+    </div>
+
+    <script>
+    const list = document.querySelector("#submission-list");
+    const form = document.querySelector('form');
+    const output = document.querySelector("#output");
+    const idOutput = document.querySelector("#id-output");
+    let studentCounter = 0;
+
+    const dataStores = [];
+    
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+    
+        const firstName = document.querySelector('#first-name').value;
+        const lastName = document.querySelector('#last-name').value;
+        const email = document.querySelector('#email').value;
+        const phoneNumber = document.querySelector('#phone-number').value;
+        const age = document.querySelector('#age').value;
+        const address = document.querySelector('#address').value;
+
+        let studentId = studentCounter++;
+        idOutput.textContent = `Student Id: A${studentId}`;
+       
+        const formData = {
+            name: `${firstName} ${lastName}`,
+            email: email,
+            phone: phoneNumber,
+            age: age,
+            address: address,
+            Sid: studentId
+        };
+
+        
+        dataStores.push(formData);
+
+        output.innerHTML = `
+            <strong>Latest Submission:</strong><br>
+            Name: ${formData.name} <br>
+            Email: ${formData.email} <br>
+            Phone: ${formData.phone} <br>
+            Age: ${formData.age} <br>
+            Address: ${formData.address} <br>
+            Student Id: A${formData.Sid}
+        `;
+
+        let li = document.createElement('li');
+        let btn = document.createElement('button');
+        btn.innerText = "Remove";
+      li.innerHTML =  `
+        <strong>${formData.name}</strong> - 
+        Email: ${formData.email}, 
+        Phone: ${formData.phone}, 
+        Age: ${formData.age}, 
+        Address: ${formData.address},
+        Student Id: A${formData.Sid}
+    `;
+    list.appendChild(li);
+    let storeLi = li.appendChild(btn);
+    btn.addEventListener('click', function() {
+        li.remove();
+    })
+
+        console.log("All submissions so far:", dataStores); 
+        
+    
+
+        form.reset(); 
+    });
+
+    //---------------form styling-----------------
+    let focuss = document.getElementsByTagName('input');
+    for (let i = 0; i < focuss.length; i++) {
+        focuss[i].addEventListener('focus', function (){
+        this.style.backgroundColor = "#e0f7fa";
+    })
+    focuss[i].addEventListener('blur', function(){
+        this.style.backgroundColor = "white";
+    })
+    }
+    
+        
+    </script>
+</body>
+</html>
