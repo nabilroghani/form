@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+fieldset {
+    border: none;
+}
+
+legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    text-align: left;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+input:focus {
+    background-color: #e0f7fa;
+    outline: none;
+    border-color: #00bcd4;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0097a7;
+}
+
+#output, #id-output {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+#all-submissions {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#submission-list {
+    padding-left: 20px;
+}
+
+#submission-list li {
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 6px;
+    position: relative;
+}
+
+#submission-list button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    form {
+        gap: 8px;
+    }
+}
